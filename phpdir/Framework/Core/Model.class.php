@@ -7,7 +7,7 @@
             $this->init();
         }
         private function init(){
-            $this->db = MYPDO::getInstance();
+            $this->db = new MYPDO;
 //            echo 'in Model.class.php init --db--';
             $this->lib = SQL::getInstance();
 //            echo 'in Model.class.php init --lib--';

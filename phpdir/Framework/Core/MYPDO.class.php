@@ -10,16 +10,16 @@
         private $user;
         private $pwd;
         private $pdo;#保存PDO对象
-        private $set;
-        private function __construct($param){#阻止外部实例化
+        // private $set;
+        public function __construct($param){#阻止外部实例化
             $this->init_config();
             $this->initParam($param);
             $this->initPDO();
             $this->initException();
         }
-        private function __clone(){#阻止外部克隆
+        // private function __clone(){#阻止外部克隆
 
-        }
+        // }
         private function init_config(){
             $GLOBALS['config'] = require CONFIG_PATH.'config.php';
         }
@@ -110,17 +110,17 @@
                 $this->print_err($ex,$sql);
             }
         }
-        public static function getInstance($param=array()){#获取单例
-            if(!self::$instance instanceof self){
-                self::$instance = new self($param);
-            }else{
-                foreach($param as $k=>$v){
-                    if($v&&$v!=self::$set[$k]){
-                        self::$instance = new self($param);
-                        break;
-                    }
-                }
-            }
-            return self::$instance;
-        }
+        // public static function getInstance($param=array()){#获取单例
+        //     if(!self::$instance instanceof self){
+        //         self::$instance = new self($param);
+        //     }else{
+        //         foreach($param as $k=>$v){
+        //             if($v&&$v!=self::$set[$k]){
+        //                 self::$instance = new self($param);
+        //                 break;
+        //             }
+        //         }
+        //     }
+        //     return self::$instance;
+        // }
     }
