@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+    <h1>注册</h1>
+    <form>
+        <p>
+             <label>用户名：</label>
+            <input type="text" name="uname" required pattern="^[^\s]*$" class="uname">
+        </p>
+        <p>
+            <label>邮箱：</label>
+            <input type="email" name="address" required class="address">
+       </p>
+        <p>
+            <label>密码：</label>
+            <input type="password" name="upwd" required pattern="^[^\s]*$" class="upwd">
+        </p>
+        <p>
+            <label>确认密码：</label>
+            <input type="password" name="cpwd" required pattern="^[^\s]*$" class="cpwd">
+        </p>
+        <p>
+            <input type="button" value="确定" class="submit">
+        </p>
+    </form>
+    <a href="index.php">返回</a>
+</body>
+    <script src="Public/js/jquery.js"></script>
+    <script src="Public/js/register.js"></script>
+</html>

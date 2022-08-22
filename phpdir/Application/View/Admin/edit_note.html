@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加笔记</title>
+    <link rel="stylesheet" type="text/css" href="Public/css/add_note.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="inner">
+            <p>
+                <label>标题：</label>
+                <input type="text" class="title" value="<?=$note?$note['title']:''?>" disabled="true">
+                <input type="button" class="save" value="上传">
+                <input type="button" class="edit" value="编辑">
+                <span class="nid"><?=$nid?></span>
+            </p>
+            <p>
+                <div class="main">
+                    <label>内容：</label>
+                    <div class="tarea" contenteditable="false"><?=$note?$note['content']:''?></div>
+                </div>
+            </p>
+            <p>
+                <div class="container player">
+                    <label>图片：</label>
+                    <div class="files img">
+                        <?php foreach($img_list as $i):?>
+                            <div class='nfile play' name="<?=$i['id']?>">
+                                <img class='pic' src="Public/<?=$i['src']?>">
+                            </div>
+                            <div class='nfile handling' name="<?=$i['id']?>">
+                                <img class='pic' src="Public/<?=$i['src']?>">
+                            </div>
+                        <?php endforeach;?>
+                    </div>
+                </div>
+            </p>
+            <p>
+                <div class="container player">
+                    <label>附件：</label>
+                    <div class="files other">
+                        <?php foreach($file_list as $f):?>
+                            <div class='nfile play' name="<?=$f['id']?>">
+                                <img class='icon' src='Public/icon/file.webp'>
+                                <a href="Public/<?=$f['src']?>" download="<?=$f['name']?>"><span><?=$f['name']?></span></a> 
+                            </div>
+                            <div class='nfile handling' name="<?=$f['id']?>">
+                                <img class='icon' src='Public/icon/file.webp'>
+                                <span><?=$f['name']?></span>
+                            </div>
+                        <?php endforeach;?>
+                    </div>
+                </div>
+            </p>
+            <p>
+                <div class="container editor">
+                    <label>上传：</label>
+                    <div class="files">
+                    </div>
+                    <input type="button" class="addfile" value="选择文件">
+                    <input type="file" class="myfile">
+                    <input type="button" class="delfile" value="删除文件">
+                </div>
+            </p>
+            <p>
+                <input type="button" class="delnote" value="删除笔记">
+                <button><a href="javascript:history.back(-1)">返回</a></button>
+            </p>
+        </div>
+        <div class='cover'>
+            <img class="screen">
+        </div>
+    </div>
+</body>
+    <script src="Public/js/jquery.js"></script>
+    <script src="Public/js/addNote.js"></script>
+</html>
