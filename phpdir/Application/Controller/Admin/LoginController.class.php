@@ -1,13 +1,11 @@
 <?php
     namespace Controller\Admin;
 // use function PHPSTORM_META\type;
-    class LoginController{
+    class LoginController extends \Core\Controller{
         private $model;
         private $info;
-        public function __construct(){
-            #self::memoryClear();
-        }
         public function loadAction(){
+            self::memoryClear();
             require __VIEW__.'login.html';
         }
         public function loginAction(){

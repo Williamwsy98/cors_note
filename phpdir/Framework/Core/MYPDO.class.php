@@ -11,7 +11,7 @@
         private $pwd;
         private $pdo;#保存PDO对象
         // private $set;
-        public function __construct($param){#阻止外部实例化
+        public function __construct($param=array()){#阻止外部实例化
             $this->init_config();
             $this->initParam($param);
             $this->initPDO();

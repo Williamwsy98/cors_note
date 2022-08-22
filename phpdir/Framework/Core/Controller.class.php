@@ -1,11 +1,17 @@
 <?php
     namespace Core;
     class Controller {
+        public function __construct(){
+            self::InitSession();
+        } 
+        public static function InitSession(){
+            new \Lib\Session;
+        }
         public static function guard(){
             if(!$_SESSION['user']) header('location:index.php?c=login&a=load');
         }
         public static function memoryClear(){
-            session_unset();
+            session_destroy();
             setcookie('id','');
             setcookie('uname','');
         }

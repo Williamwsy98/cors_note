@@ -29,7 +29,6 @@
             $p = ucfirst(strtolower($_GET['p']??$GLOBALS['config']['app']['dp']));
             $c = ucfirst(strtolower($_GET['c']??''));#控制器名称(首字母大写)
             $a = strtolower($_GET['a']??'');#方法名称(小写)
-            if(!($c&&$a)) self::redirect();
             define('PLATFORM_NAME',$p);#平台名常量
             define('CONTROLLER_NAME',$c);#控制器常量
             define('ACTION_NAME',$a);#方法名常量
@@ -65,6 +64,7 @@
         }
         #请求分发
         private static function initDispatch(){
+            // if(!(CONTROLLER_NAME&&ACTION_NAME)) self::redirect();
             $controller_name = '\Controller\\'.PLATFORM_NAME.'\\'.CONTROLLER_NAME.'Controller';
             $action_name = ACTION_NAME.'Action';
             // echo $controller_name,' 888<br>';
@@ -73,6 +73,7 @@
             $controller->$action_name();
         }
         private static function redirect(){
+            new \Lib\Session;
             if($_SESSION['user']) header('location:index.php?c='.$GLOBALS['config']['login']['dc'].'&a='.$GLOBALS['config']['login']['da']);
             else {
                 if($_COOKIE['id']&&$_COOKIE['uname']){
