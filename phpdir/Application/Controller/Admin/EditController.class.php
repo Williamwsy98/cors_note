@@ -3,10 +3,8 @@
     class EditController extends \Core\Controller{
         private $model;
         private $res;
-        public function __construct(){
-            self::guard();
-        }
         public function renderAction(){
+            self::guard();
             if($_GET['nid']){
                 $this->model = new \Model\EditModel;
                 $nid = $_GET['nid'];

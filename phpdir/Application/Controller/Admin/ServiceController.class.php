@@ -11,6 +11,8 @@
         private $idel;
         private $fdel;
         public function __construct(){
+            parent::__construct();
+            self::guard();
             $this->model = new \Model\ServiceModel;
             $this->uid = $_SESSION['user']['id'];
         }

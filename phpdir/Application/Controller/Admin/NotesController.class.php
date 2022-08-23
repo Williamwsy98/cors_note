@@ -1,11 +1,12 @@
 <?php
     namespace Controller\Admin;
 
-use function PHPSTORM_META\type;
+// use function PHPSTORM_META\type;
 
     class NotesController extends \Core\Controller{
         private $model;
         public function __construct(){
+            parent::__construct();
             self::guard();
         }
         public function lobbyAction(){

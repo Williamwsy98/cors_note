@@ -64,7 +64,7 @@
         }
         #请求分发
         private static function initDispatch(){
-            // if(!(CONTROLLER_NAME&&ACTION_NAME)) self::redirect();
+            if(!(CONTROLLER_NAME&&ACTION_NAME)) self::redirect();
             $controller_name = '\Controller\\'.PLATFORM_NAME.'\\'.CONTROLLER_NAME.'Controller';
             $action_name = ACTION_NAME.'Action';
             // echo $controller_name,' 888<br>';
