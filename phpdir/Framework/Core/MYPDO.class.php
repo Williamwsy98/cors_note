@@ -56,7 +56,7 @@
         private function initPDO(){#初始化PDO对象
             try{
                 $dsn = "{$this->type}:host={$this->host};post={$this->port};dbname={$this->dbn};charset=utf8";
-//                echo $dsn,$this->user,$this->pwd,'<br>';
+                // echo $dsn,$this->user,$this->pwd,'<br>';
                 $this->pdo = new \PDO($dsn,$this->user,$this->pwd);
             }catch(\PDOException $ex){
                 $this->print_err($ex);
