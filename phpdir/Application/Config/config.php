@@ -17,5 +17,7 @@
             'dbn'=>'cloudnote',
             'user'=>'root',
             'pwd'=>'123456'
-        )
+        ),
+	'pagesize'=>5,
+	'session_db'=>'session'
     );

@@ -5,7 +5,7 @@
         private $model;
         private $info;
         public function loadAction(){
-            // self::memoryClear();
+            self::memoryClear();
             require __VIEW__.'login.html';
         }
         public function loginAction(){

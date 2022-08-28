@@ -12,12 +12,12 @@
         public function add_note($param){
             $this->kv = array('title'=>$param['title'],'content'=>$param['content'],'user_id'=>$param['uid'],'created_time'=>$param['now'],'updated_time'=>$param['now']);
             $this->sql = $this->lib->insert_sql(array('table'=>'cloudnote_notes','kv'=>$this->kv));
-            $this->db->exec_cud($this->sql);
+            $this->db->exec($this->sql);
         }
         public function edit_note($param){
-            $this->kv = array('title'=>$param['title'],'content'=>$param['content'],'user_id'=>$param['uid'],'created_time'=>$param['now'],'updated_time'=>$param['now']);
+            $this->kv = array('title'=>$param['title'],'content'=>$param['content'],'updated_time'=>$param['now']);
             $this->sql = $this->lib->update_sql(array('table'=>'cloudnote_notes','kv'=>$this->kv,'wh'=>array('id'=>$param['nid'])));
-            $this->db->exec_cud($this->sql);
+            $this->db->exec($this->sql);
         }
         public function get_tail(){
             return $this->db->get_tail();
@@ -37,7 +37,7 @@
                     $this->kv = array('isactive'=>0,'del_time'=>$param['now']);
                     $this->wh = array('id'=>$id);
                     $this->sql = $this->lib->update_sql(array('table'=>'note_img','kv'=>$this->kv,'wh'=>$this->wh));
-                    $this->db->exec_cud($this->sql);
+                    $this->db->exec($this->sql);
                 }
             }
             if($param['fdel']){
@@ -45,7 +45,7 @@
                     $this->kv = array('isactive'=>0,'del_time'=>$param['now']);
                     $this->wh = array('id'=>$fd);
                     $this->sql = $this->lib->update_sql(array('table'=>'note_file','kv'=>$this->kv,'wh'=>$this->wh));
-                    $this->db->exec_cud($this->sql);
+                    $this->db->exec($this->sql);
                 }
             }
         }
@@ -60,8 +60,9 @@
                 $f_path = PUBLIC_PATH.$f_src;
                 $this->kv = array('src'=>$f_src,'note_id'=>$param['nid'],'name'=>$f_name,'upload_time'=>$param['now'],'del_time'=>$param['now']);
                 $this->sql = $this->lib->insert_sql(array('table'=>$f_table,'kv'=>$this->kv));
-                move_uploaded_file($this->f['tmp_name'][$i],$f_path);
-                $this->db->exec_cud($this->sql);
+		echo $this->f['tmp_name'][$i],666;
+                //move_uploaded_file($this->f['tmp_name'][$i],$f_path);
+                //$this->db->exec($this->sql);
             }
         }
         private function naming($f_name){
@@ -81,7 +82,7 @@
             $this->wh = array('id'=>$param['nid']);
             $this->kv = array('isactive'=>0,'updated_time'=>$param['now']);
             $this->sql = $this->lib->update_sql(array('table'=>'cloudnote_notes','kv'=>$this->kv,'wh'=>$this->wh));
-            $this->db->exec_cud($this->sql);
+            $this->db->exec($this->sql);
             return true;
         }
     }
