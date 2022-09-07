@@ -6,15 +6,17 @@
         private $lib;
         private $sql;
         public function __construct(){
-            session_set_save_handler(
-                [$this,'open'],
-                [$this,'close'],
-                [$this,'read'],
-                [$this,'write'],
-                [$this,'destroy'],
-                [$this,'gc']
-            );
-            session_start();  
+            if (!session_id()) {
+                session_set_save_handler(
+                    [$this,'open'],
+                    [$this,'close'],
+                    [$this,'read'],
+                    [$this,'write'],
+                    [$this,'destroy'],
+                    [$this,'gc']
+                );
+                session_start();
+            }  
         }
         private function initConfig(){
             $GLOBALS['config'] = require CONFIG_PATH.'config.php';

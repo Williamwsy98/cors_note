@@ -5,7 +5,7 @@
         private $res;
         public function renderAction(){
             self::guard();
-            if($_GET['nid']){
+            if(!empty($_GET['nid'])){
                 $this->model = new \Model\EditModel;
                 $nid = $_GET['nid'];
                 $this->res = $this->model->output($_SESSION['user']['id'],$_GET['nid']);

@@ -10,7 +10,7 @@
         <div class="inner">
             <p>
                 <label>标题：</label>
-                <input type="text" class="title" value="<?=$note?$note['title']:''?>" disabled="true">
+                <input type="text" class="title" value="<?=!empty($note)?$note['title']:''?>" disabled="true">
                 <input type="button" class="save" value="上传">
                 <input type="button" class="edit" value="编辑">
                 <span class="nid"><?=$nid?></span>
@@ -18,14 +18,14 @@
             <p>
                 <div class="main">
                     <label>内容：</label>
-                    <div class="tarea" contenteditable="false"><?=$note?$note['content']:''?></div>
+                    <div class="tarea" contenteditable="false"><?=!empty($note)?$note['content']:''?></div>
                 </div>
             </p>
             <p>
                 <div class="container player">
                     <label>图片：</label>
                     <div class="files img">
-                        <?php foreach($img_list as $i):?>
+                        <?php if (empty($img_list)) $img_list = [];foreach($img_list as $i):?>
                             <div class='nfile play' name="<?=$i['id']?>">
                                 <img class='pic' src="Public/<?=$i['src']?>">
                             </div>
@@ -40,7 +40,7 @@
                 <div class="container player">
                     <label>附件：</label>
                     <div class="files other">
-                        <?php foreach($file_list as $f):?>
+                        <?php if (empty($file_list)) $file_list = [];foreach($file_list as $f):?>
                             <div class='nfile play' name="<?=$f['id']?>">
                                 <img class='icon' src='Public/icon/file.webp'>
                                 <a href="Public/<?=$f['src']?>" download="<?=$f['name']?>"><span><?=$f['name']?></span></a> 

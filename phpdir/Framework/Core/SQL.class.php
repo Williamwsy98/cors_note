@@ -24,15 +24,15 @@
         }
         private function init($param){
             $this->sql = '';
-            $this->kv = $param['kv'];
+            $this->kv = !empty($param['kv']) ? $param['kv'] : '';
             // $this->values = array();
-            $this->table = $param['table'];
-            $this->cols = $param['cols'];
-            $this->wh = $param['wh'];
-            $this->index = $param['index']??0;
-            $this->range = $param['range']??0;
-            if($param['order']){
-                if(is_array($param['order'])) $this->order = array('col'=>$param['order']['col']??'id','td'=>$param['order']['td']??'asc');
+            $this->table = !empty($param['table']) ? $param['table'] : '';
+            $this->cols = !empty($param['cols']) ? $param['cols'] : '';
+            $this->wh = !empty($param['wh']) ? $param['wh'] : '';
+            $this->index = !empty($param['index']) ? $param['index'] : 0;
+            $this->range = !empty($param['range']) ? $param['range'] : 0;
+            if(!empty($param['order'])){
+                if(is_array($param['order'])) $this->order = array('col'=>!empty($param['order']['col'])?$param['order']['col']:'id','td'=>!empty($param['order']['td'])?$param['order']['td']:'asc');
                 else $this->order = array('col'=>'id','td'=>$param['order']);
             }
         }

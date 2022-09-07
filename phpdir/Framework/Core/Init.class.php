@@ -36,7 +36,9 @@
             define('__VIEW__',VIEW_PATH.$p.DS);#当前视图的目录地址
         }
         private static function class_split($class){
-            return array(join('\\',explode('\\',$class,-1)),array_pop(explode('\\',$class)));
+            $ep = explode('\\',$class);
+            $ep1 = explode('\\',$class,-1);
+            return array(join('\\',$ep1),array_pop($ep));
         }
         #自动加载类
         private static function initAutoLoad(){
@@ -74,9 +76,9 @@
         }
         private static function redirect(){
             new \Lib\Session;
-            if($_SESSION['user']) header('location:index.php?c='.$GLOBALS['config']['login']['dc'].'&a='.$GLOBALS['config']['login']['da']);
+            if(!empty($_SESSION['user'])) header('location:index.php?c='.$GLOBALS['config']['login']['dc'].'&a='.$GLOBALS['config']['login']['da']);
             else {
-                if($_COOKIE['id']&&$_COOKIE['uname']){
+                if(!empty($_COOKIE['id'])&&!empty($_COOKIE['uname'])){
                     $_SESSION['user'] = array('id'=>$_COOKIE['id'],'uname'=>$_COOKIE['uname']);
                     header('location:index.php?c='.$GLOBALS['config']['login']['dc'].'&a='.$GLOBALS['config']['login']['da']);
                 }else header('location:index.php?c='.$GLOBALS['config']['app']['dc'].'&a='.$GLOBALS['config']['app']['da']);
@@ -89,8 +91,5 @@
             self::initRoutes();
             self::initAutoLoad();
             self::initDispatch();
-//            echo 'hello111<br>';
-//            $model = new \Model\LoginModel;
-//            echo 'hello222<br>';
         }
     }

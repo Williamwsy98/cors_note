@@ -23,10 +23,10 @@
             $this->get_time();
             $this->title = $_POST['title'];
             $this->content = $_POST['content'];
-            if($_FILES['file']) $this->files = $_FILES['file'];
-            if($_POST['nid']) $this->nid = $_POST['nid'];
-            if($_POST['idel']) $this->idel = json_decode($_POST['idel']);
-            if($_POST['fdel']) $this->fdel = json_decode($_POST['fdel']);
+            if(!empty($_FILES['file'])) $this->files = $_FILES['file'];
+            if(!empty($_POST['nid'])) $this->nid = $_POST['nid'];
+            if(!empty($_POST['idel'])) $this->idel = json_decode($_POST['idel']);
+            if(!empty($_POST['fdel'])) $this->fdel = json_decode($_POST['fdel']);
             if($flag) return $this->model->watch(array('nid'=>$this->nid,'title'=>$this->title,'content'=>$this->content,
             'files'=>$this->files,'idel'=>$this->idel,'fdel'=>$this->fdel));
         }

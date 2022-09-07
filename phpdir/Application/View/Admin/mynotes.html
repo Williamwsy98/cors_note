@@ -13,17 +13,15 @@
     <p>
         <table border="1" cellspacing="10">
             <tr>
-                <th>编号</th>
                 <th>标题</th>
                 <th>创建时间</th>
                 <th>最近更新</th>
             </tr>
             <?php foreach($res as $k=>$v):?>
                 <tr>
-                    <td><?=$v['id']?></td>
                     <td><a href="index.php?c=edit&a=render&nid=<?=$v['id']?>"><?=$v['title']?></a></td>
-                    <td><?=$v['created_time']?></td>
-                    <td><?=$v['updated_time']?></td>
+                    <td><?=join(':',explode(':',$v['created_time'],-1))?></td>
+                    <td><?=join(':',explode(':',$v['updated_time'],-1))?></td>
                 </tr>
             <?php endforeach;?>
         </table>

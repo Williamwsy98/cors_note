@@ -20,7 +20,7 @@
             $this->db->exec($this->sql);
         }
         public function get_tail(){
-            return $this->db->get_tail();
+            return $this->db->lastID();
         }
         public function watch($param){
             $nid = $param['nid'];
@@ -60,9 +60,9 @@
                 $f_path = PUBLIC_PATH.$f_src;
                 $this->kv = array('src'=>$f_src,'note_id'=>$param['nid'],'name'=>$f_name,'upload_time'=>$param['now'],'del_time'=>$param['now']);
                 $this->sql = $this->lib->insert_sql(array('table'=>$f_table,'kv'=>$this->kv));
-		echo $this->f['tmp_name'][$i],666;
-                //move_uploaded_file($this->f['tmp_name'][$i],$f_path);
-                //$this->db->exec($this->sql);
+		        // echo $this->f['tmp_name'][$i],666;
+                move_uploaded_file($this->f['tmp_name'][$i],$f_path);
+                $this->db->exec($this->sql);
             }
         }
         private function naming($f_name){
