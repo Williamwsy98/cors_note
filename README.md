@@ -1,0 +1,3 @@
+# cors_note
+云笔记后端部分
+cors_note目录是云笔记项目的后端部分，问题依然是move_uploaded_file无法上传文件（静态资源目录权限已经是777）
